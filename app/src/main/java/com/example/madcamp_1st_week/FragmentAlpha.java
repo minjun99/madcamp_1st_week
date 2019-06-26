@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 public class FragmentAlpha extends Fragment {
     View view;
+
     public FragmentAlpha() {
     }
 

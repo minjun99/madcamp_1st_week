@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 public class FragmentGallery extends Fragment {
     View view;
+
     public FragmentGallery() {
     }
 

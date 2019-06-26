@@ -26,7 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="50dp"
-        android:id="@+id/viewpager_id"></androidx.viewpager.widget.ViewPager>
+        android:id="@+id/viewpager_id">
+    </androidx.viewpager.widget.ViewPager>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout_id"
