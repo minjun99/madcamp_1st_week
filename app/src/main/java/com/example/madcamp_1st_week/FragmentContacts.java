@@ -42,28 +42,56 @@ public class FragmentContacts extends Fragment {
         List<String> listName = Arrays.asList(
                 "Jason",
                 "David",
-                "John",
-                "Kate",
-                "Park",
-                "Kim",
-                "Elizabeth",
-                "IU",
-                "Lisa",
-                "Marshmello",
-                "Avicci",
-                "Danny",
-                "Ahri",
-                "Han",
-                "Smith",
-                "Wick",
-                "Joshua",
-                "Harry",
-                "Cho"
+                "John"
+        );
+
+        List<Integer> listImage = Arrays.asList(
+                R.drawable.ic_account_circle,
+                R.drawable.ic_account_circle,
+                R.drawable.ic_account_circle
+        );
+
+        List<String> listUsername = Arrays.asList(
+                "1",
+                "1",
+                "1"
+        );
+        List<String> listEmail = Arrays.asList(
+                "1",
+                "1",
+                "1"
+        );
+        List<String> listAddress = Arrays.asList(
+                "1",
+                "1",
+                "1"
+        );
+        List<String> listPhone = Arrays.asList(
+                "1",
+                "1",
+                "1"
+        );
+        List<String > listWebsite = Arrays.asList(
+                "1",
+                "1",
+                "1"
+        );
+        List<String> listCompany = Arrays.asList(
+                "1",
+                "1",
+                "1"
         );
 
         for (int i = 0; i < listName.size(); i++) {
             RecyclerItem recyclerItem = new RecyclerItem();
             recyclerItem.setName(listName.get(i));
+            recyclerItem.setResId(listImage.get(i));
+            recyclerItem.setUsername(listUsername.get(i));
+            recyclerItem.setEmail(listEmail.get(i));
+            recyclerItem.setAddress(listAddress.get(i));
+            recyclerItem.setPhone(listPhone.get(i));
+            recyclerItem.setWebsite(listWebsite.get(i));
+            recyclerItem.setCompany(listCompany.get(i));
 
             adapter.addItem(recyclerItem);
         }
