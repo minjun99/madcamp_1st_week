@@ -3,7 +3,6 @@ package com.example.madcamp_1st_week;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.icu.text.IDNA;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,13 +89,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             final Context context = view.getContext();
 
             List<String> InfoItems = new ArrayList<>();
-            InfoItems.add("Name: " + recyclerItem.getName());
-            InfoItems.add("Username: " + recyclerItem.getUsername());
-            InfoItems.add("Email: " + recyclerItem.getEmail());
-            InfoItems.add("Address: " + recyclerItem.getAddress());
-            InfoItems.add("Phone: " + recyclerItem.getPhone());
-            InfoItems.add("Website: " + recyclerItem.getWebsite());
-            InfoItems.add("Company: " + recyclerItem.getCompany());
+            InfoItems.add("Name: \n" + recyclerItem.getName());
+            InfoItems.add("Username: \n" + recyclerItem.getUsername());
+            InfoItems.add("Email: \n" + recyclerItem.getEmail());
+            InfoItems.add("Address: \n" + recyclerItem.getAddress());
+            InfoItems.add("Phone: \n" + recyclerItem.getPhone());
+            InfoItems.add("Website: \n" + recyclerItem.getWebsite());
+            InfoItems.add("Company: \n" + recyclerItem.getCompany());
 
             final CharSequence[] Infos = InfoItems.toArray(new String[ InfoItems.size()]);
 
