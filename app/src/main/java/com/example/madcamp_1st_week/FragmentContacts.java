@@ -30,12 +30,12 @@ public class FragmentContacts extends Fragment {
     private RequestQueue mQueue;
 
     private List<String> listName = new ArrayList<String>();
-    private List<String> listUsername = new ArrayList<String >();
-    private List<String> listEmail = new ArrayList<String >();
-    private List<String> listAddress = new ArrayList<String >();
-    private List<String> listPhone = new ArrayList<String >();
-    private List<String> listWebsite = new ArrayList<String >();
-    private List<String> listCompany = new ArrayList<String >();
+    private List<String> listUsername = new ArrayList<String>();
+    private List<String> listEmail = new ArrayList<String>();
+    private List<String> listAddress = new ArrayList<String>();
+    private List<String> listPhone = new ArrayList<String>();
+    private List<String> listWebsite = new ArrayList<String>();
+    private List<String> listCompany = new ArrayList<String>();
     private List<Integer> listImage = new ArrayList<Integer>();
 
     public FragmentContacts() {
@@ -93,19 +93,17 @@ public class FragmentContacts extends Fragment {
 
                         listImage.add(R.drawable.ic_account_circle);
 
-                        for (int j = 0; j < listName.size(); j++) {
-                            RecyclerItem recyclerItem = new RecyclerItem();
-                            recyclerItem.setName(listName.get(j));
-                            recyclerItem.setResId(listImage.get(j));
-                            recyclerItem.setUsername(listUsername.get(j));
-                            recyclerItem.setEmail(listEmail.get(j));
-                            recyclerItem.setAddress(listAddress.get(j));
-                            recyclerItem.setPhone(listPhone.get(j));
-                            recyclerItem.setWebsite(listWebsite.get(j));
-                            recyclerItem.setCompany(listCompany.get(j));
+                        RecyclerItem recyclerItem = new RecyclerItem();
+                        recyclerItem.setName(listName.get(i));
+                        recyclerItem.setResId(listImage.get(i));
+                        recyclerItem.setUsername(listUsername.get(i));
+                        recyclerItem.setEmail(listEmail.get(i));
+                        recyclerItem.setAddress(listAddress.get(i));
+                        recyclerItem.setPhone(listPhone.get(i));
+                        recyclerItem.setWebsite(listWebsite.get(i));
+                        recyclerItem.setCompany(listCompany.get(i));
 
-                            adapter.addItem(recyclerItem);
-                        }
+                        adapter.addItem(recyclerItem);
 
                         adapter.notifyDataSetChanged();
                     }
