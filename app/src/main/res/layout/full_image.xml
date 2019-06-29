@@ -12,6 +12,18 @@
         android:id="@+id/fullImage_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/grid"/>
+        android:src="@drawable/grid"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/roundcorner_coloraccent"/>
+
+    <TextView
+        android:textSize="10sp"
+        android:id="@+id/fullImageText_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/fullImage_id"
+        android:layout_marginTop="-25dp"
+        android:background="@drawable/roundcorner_colorprimary_bottom"/>
 
 </RelativeLayout>

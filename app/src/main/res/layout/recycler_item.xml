@@ -5,8 +5,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    android:background="@color/backgroundcolor"
-    android:gravity="left">
+    android:background="@drawable/roundcorner_coloraccent"
+    android:gravity="left"
+    android:layout_marginTop="2.5dp"
+    android:layout_marginBottom="2.5dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
 
     <ImageView
         android:id="@+id/imageView_id"

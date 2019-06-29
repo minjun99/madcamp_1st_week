@@ -26,29 +26,29 @@ public class FragmentGallery extends Fragment {
     GridView gridView;
     ArrayList<File> imageList;
 
-    public FragmentGallery() {
-    }
+        public FragmentGallery() {
+        }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.gallery_fragment, container, false);
-        gridView = (GridView) view.findViewById(R.id.gridView_id);
-        imageList = imageReader(Environment.getExternalStorageDirectory());
-        gridView.setAdapter(new GridAdapter());
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), FullImage.class);
-                intent.putExtra("img", imageList.get(i).toString());
-                startActivity(intent);
-            }
-        });
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            view = inflater.inflate(R.layout.gallery_fragment, container, false);
+            gridView = (GridView) view.findViewById(R.id.gridView_id);
+            imageList = imageReader(Environment.getExternalStorageDirectory());
+            gridView.setAdapter(new GridAdapter());
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(getActivity(), FullImage.class);
+                    intent.putExtra("img", imageList.get(i).toString());
+                    startActivity(intent);
+                }
+            });
 
-        return view;
-    }
+            return view;
+        }
 
-    public class GridAdapter extends BaseAdapter {
+        public class GridAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {

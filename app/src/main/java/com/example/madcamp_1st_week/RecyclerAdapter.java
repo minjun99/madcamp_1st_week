@@ -99,7 +99,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
             final CharSequence[] Infos = InfoItems.toArray(new String[ InfoItems.size()]);
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialog);
             builder.setTitle("Contact Info of " + recyclerItem.getName());
             builder.setItems(Infos, new DialogInterface.OnClickListener() {
                 @Override
