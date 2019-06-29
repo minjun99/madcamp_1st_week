@@ -4,7 +4,7 @@
     android:id="@+id/linearItem_id"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="56dp"
+    android:layout_height="45dp"
     android:background="@drawable/roundcorner_coloraccent"
     android:gravity="left"
     android:layout_marginTop="2.5dp"
@@ -21,6 +21,7 @@
         android:layout_height="40dp" />
 
     <TextView
+        android:textColor="@color/itemcolor"
         android:id="@+id/textView_id"
         android:layout_toRightOf="@+id/imageView_id"
         android:layout_marginStart="72dp"

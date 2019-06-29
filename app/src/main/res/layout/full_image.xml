@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FullImage"
-    android:background="@color/backgroundcolor">>
+    android:background="@color/backgroundcolor">
 
     <ImageView
         android:id="@+id/fullImage_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/grid"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/roundcorner_coloraccent"/>
 
     <TextView
@@ -22,8 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/fullImage_id"
-        android:layout_marginTop="-25dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/roundcorner_colorprimary_bottom"/>
 
 </RelativeLayout>
