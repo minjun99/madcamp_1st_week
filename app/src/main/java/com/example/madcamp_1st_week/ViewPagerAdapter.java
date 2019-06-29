@@ -10,8 +10,31 @@ import java.util.List;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-    private final List<Fragment> fragmentList = new ArrayList<>();
-    private final List<String> FragmentListTitles = new ArrayList<>();
+   public class FragmentInfo {
+        private int iconResId;
+        //private String text;
+        private Fragment fragment;
+
+        public FragmentInfo(Fragment fragment, int iconResId) {
+            this.iconResId = iconResId;
+            //this.text = text;
+            this.fragment = fragment;
+        }
+
+        public int getIconResId() {
+            return iconResId;
+        }
+
+//        public String getTitleText() {
+//            return text;
+//        }
+
+        public Fragment getFragment() {
+            return fragment;
+        }
+    }
+
+    private final List<FragmentInfo> fragmentInfoList = new ArrayList<FragmentInfo>();
 
     public ViewPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -19,22 +42,26 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return fragmentList.get(position);
+        return fragmentInfoList.get(position).getFragment();
     }
 
     @Override
     public int getCount() {
-        return FragmentListTitles.size();
+        return fragmentInfoList.size();
     }
 
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return FragmentListTitles.get(position);
+//    @Nullable
+//    @Override
+//    public CharSequence getPageTitle(int position) {
+//        return fragmentInfoList.get(position).getTitleText();
+//    }
+
+    public void AddFragment(Fragment fragment, int iconResId) {
+        FragmentInfo info = new FragmentInfo(fragment,iconResId);
+        fragmentInfoList.add(info);
     }
 
-    public void AddFragment(Fragment fragment, String Title){
-        fragmentList.add(fragment);
-        FragmentListTitles.add(Title);
+    public FragmentInfo getFragmentInfo(int position) {
+        return fragmentInfoList.get(position);
     }
 }

@@ -25,13 +25,16 @@ public class TabActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         // Adding Fragments
-        adapter.AddFragment(new FragmentContacts(), "Contacts");
-        adapter.AddFragment(new FragmentGallery(), "Gallery");
-        adapter.AddFragment(new FragmentAlpha(), "Alpha");
+        adapter.AddFragment(new FragmentContacts(), R.drawable.image_contact);
+        adapter.AddFragment(new FragmentGallery(), R.drawable.image_gallery);
+        adapter.AddFragment(new FragmentAlpha(), R.drawable.ic_account_circle);
 
         // adapter Setup
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
+        for(int i = 0; i < viewPager.getAdapter().getCount(); i++){
+            tabLayout.getTabAt(i).setIcon(adapter.getFragmentInfo(i).getIconResId());
+        }
     }
 }
