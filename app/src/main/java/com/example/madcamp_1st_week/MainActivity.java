@@ -33,6 +33,16 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     TextView textView;
 
+    private static String[] permissionCheck = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.INTERNET,
+            Manifest.permission.ACCESS_NETWORK_STATE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.SYSTEM_ALERT_WINDOW
+    };
+
     private static final int MY_PERMISSION_STORAGE = 1111;
 
     @Override
@@ -48,7 +58,9 @@ public class MainActivity extends AppCompatActivity {
         progressBar.setScaleY(3f);
 
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             checkPermission();
         } else {
             progressAnimation();
@@ -77,30 +89,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                new AlertDialog.Builder(this)
-                        .setTitle("알림")
-                        .setMessage("저장소 권한이 거부되었습니다. 사용을 원하시면 설정에서 해당 권한을 직접 허용하셔야 합니다.")
-                        .setNeutralButton("설정", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                intent.setData(Uri.parse("package:" + getPackageName()));
-                                startActivity(intent);
-                            }
-                        })
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                finish();
-                            }
-                        })
-                        .setCancelable(false)
-                        .create()
-                        .show();
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[0]) ||
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[1]) ||
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[2]) ||
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[3]) ||
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[4]) ||
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[5]) ||
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[6])
+            ) {
+                Dialog();
             } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSION_STORAGE);
+                ActivityCompat.requestPermissions(this, permissionCheck, MY_PERMISSION_STORAGE);
                 finish();
             }
         }
@@ -113,12 +115,35 @@ public class MainActivity extends AppCompatActivity {
             case MY_PERMISSION_STORAGE:
                 for (int i = 0; i < grantResults.length; i++) {
                     if (grantResults[i] < 0) {
-                        Toast.makeText(MainActivity.this, "해당 권한을 활성화 하셔야 합니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Need to Allow the Permission", Toast.LENGTH_SHORT).show();
                         finish();
                         return;
                     }
                 }
                 break;
         }
+    }
+
+    public void Dialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Notification")
+                .setMessage("Storage Permission Denied. Allow the Permission on the Settings.")
+                .setNeutralButton("Settings", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        intent.setData(Uri.parse("package:" + getPackageName()));
+                        startActivity(intent);
+                    }
+                })
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                })
+                .setCancelable(false)
+                .create()
+                .show();
     }
 }

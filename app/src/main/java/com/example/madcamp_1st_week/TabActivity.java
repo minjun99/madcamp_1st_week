@@ -1,6 +1,7 @@
 package com.example.madcamp_1st_week;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,12 @@ public class TabActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private AppBarLayout appBarLayout;
     private ViewPager viewPager;
+    private  BackPressCloseHandler backPressCloseHandler;
+
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -22,12 +29,14 @@ public class TabActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
         appBarLayout = (AppBarLayout) findViewById(R.id.appbar_id);
         viewPager = (ViewPager) findViewById(R.id.viewpager_id);
+        backPressCloseHandler = new BackPressCloseHandler(this);
+
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         // Adding Fragments
         adapter.AddFragment(new FragmentContacts(), R.drawable.image_contact);
         adapter.AddFragment(new FragmentGallery(), R.drawable.image_gallery);
-        adapter.AddFragment(new FragmentAlpha(), R.drawable.ic_account_circle);
+        adapter.AddFragment(new FragmentAlpha(), R.drawable.image_weather);
 
         // adapter Setup
         viewPager.setAdapter(adapter);
