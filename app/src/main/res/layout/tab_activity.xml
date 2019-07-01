@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -23,11 +23,12 @@
             android:src="@drawable/univ"/>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
+     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="50dp"
-        android:id="@+id/viewpager_id">
+        android:id="@+id/viewpager_id"
+        android:layout_below="@id/appbar_id">
     </androidx.viewpager.widget.ViewPager>
 
     <com.google.android.material.tabs.TabLayout
@@ -39,5 +40,6 @@
         app:tabGravity="fill"
         app:tabIndicatorColor="@color/tabindicatorcolor"
         app:tabMode="fixed"
-        app:tabTextColor="@color/tabtextcolor" />
-</LinearLayout>
+        app:tabTextColor="@color/tabtextcolor"
+        android:layout_below="@id/viewpager_id"/>
+</RelativeLayout>

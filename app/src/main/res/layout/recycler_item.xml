@@ -9,8 +9,8 @@
     android:gravity="left"
     android:layout_marginTop="2.5dp"
     android:layout_marginBottom="2.5dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
+    android:layout_marginLeft="2.5dp"
+    android:layout_marginRight="2.5dp">
 
     <ImageView
         android:id="@+id/imageView_id"
@@ -25,9 +25,20 @@
         android:id="@+id/textView_id"
         android:layout_toRightOf="@+id/imageView_id"
         android:layout_marginStart="72dp"
-        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="italic"/>
+        android:textSize="15sp"
+        android:textStyle="italic"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:textColor="@color/itemcolor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/contactView_id"
+        android:layout_below="@+id/textView_id"
+        android:layout_toRightOf="@id/imageView_id"
+        android:layout_marginStart="72dp"
+        android:textSize="10sp"/>
+
 </RelativeLayout>
