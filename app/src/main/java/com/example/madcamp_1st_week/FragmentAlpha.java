@@ -42,6 +42,12 @@ public class FragmentAlpha extends Fragment implements LocationListener {
     static double lat, lng;
     OpenWeatherMap openWeatherMap = new OpenWeatherMap();
 
+    boolean isNetworkEnabled = false;
+    boolean isGPSEnabled =  false;
+
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
+
     int MY_PERMISSION = 0;
 
     public FragmentAlpha() {
@@ -63,6 +69,9 @@ public class FragmentAlpha extends Fragment implements LocationListener {
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         provider = locationManager.getBestProvider(new Criteria(), false);
 
+        isGPSEnabled= locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 //            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.INTERNET,
 //                    Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -77,8 +86,43 @@ public class FragmentAlpha extends Fragment implements LocationListener {
 
         if (location == null) {
             Log.e("TAG", "No Location");
-            txtTime.setText("location Pointer is null\nGPS caanot catch the SIGNAL");
+            if (!isGPSEnabled && !isNetworkEnabled) {
+                txtTime.setText("location Pointer is null\nGPS caanot catch the SIGNAL");
+            } else {
+                if (isNetworkEnabled) {
+                    locationManager.requestLocationUpdates(
+                            LocationManager.NETWORK_PROVIDER,
+                            MIN_TIME_BW_UPDATES,
+                            MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
 
+                    if (locationManager != null) {
+                        location = locationManager
+                                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        if (location != null) {
+                            // 위도 경도 저장
+                            lat = location.getLatitude();
+                            lng = location.getLongitude();
+                        }
+                    }
+                }
+
+                if (isGPSEnabled) {
+                    if (location == null) {
+                        locationManager.requestLocationUpdates(
+                                LocationManager.GPS_PROVIDER,
+                                MIN_TIME_BW_UPDATES,
+                                MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                        if (locationManager != null) {
+                            location = locationManager
+                                    .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                            if (location != null) {
+                                lat = location.getLatitude();
+                                lng = location.getLongitude();
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         return view;
@@ -116,6 +160,12 @@ public class FragmentAlpha extends Fragment implements LocationListener {
     public void onLocationChanged(Location location) {
         lat = location.getLatitude();
         lng = location.getLongitude();
+        Log.d("Tag", location.toString());
+        if (location == null) {
+
+            txtTime.setText(location.toString());
+//            txtTime.setText("location Pointer is null\nGPS caanot catch the SIGNAL");
+        }
 
         new getWeather().execute(WeatherInfo.apiRequest(String.valueOf(lat), String.valueOf(lng)));
     }
@@ -158,12 +208,13 @@ public class FragmentAlpha extends Fragment implements LocationListener {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            if(s.contains("Error: Not found city")){
+            if (s.contains("Error: Not found city")) {
                 pd.dismiss();
                 return;
             }
             Gson gson = new Gson();
-            Type mType = new TypeToken<OpenWeatherMap>(){}.getType();
+            Type mType = new TypeToken<OpenWeatherMap>() {
+            }.getType();
             openWeatherMap = gson.fromJson(s, mType);
             pd.dismiss();
 

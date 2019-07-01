@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.ACCESS_NETWORK_STATE,
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.SYSTEM_ALERT_WINDOW
+            Manifest.permission.SYSTEM_ALERT_WINDOW,
+            Manifest.permission.CAMERA
     };
 
     private static final int MY_PERMISSION_STORAGE = 1111;
@@ -59,8 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             checkPermission();
         } else {
             progressAnimation();
@@ -90,15 +93,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[0]) ||
                     ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[1]) ||
                     ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[2]) ||
                     ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[3]) ||
                     ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[4]) ||
                     ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[5]) ||
-                    ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[6])
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[6]) ||
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, permissionCheck[7])
             ) {
                 Dialog();
             } else {
