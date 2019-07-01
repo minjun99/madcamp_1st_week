@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundcolor"
     android:gravity="center"
-    android:orientation="vertical"
-    android:background="@color/backgroundcolor">
+    android:orientation="vertical">
 
-    <GridView
-        android:id="@+id/gridView_id"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="auto_fit"
-        android:columnWidth="100dp"
-        android:verticalSpacing="5dp"
-        android:horizontalSpacing="5dp"
-        android:stretchMode="spacingWidthUniform"
-        android:layout_marginTop="10dp"/>
+    <Button
+        android:id="@+id/capturebtn_id"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="450dp"
+        android:layout_marginRight="150dp"
+        android:background="@drawable/roundbutton"
+        android:gravity="center"
+        android:text="Camera"
+        android:textAllCaps="false"
+        android:textColor="@color/tabtextcolor" />
+
+    <Button
+        android:id="@+id/displaybtn_id"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="150dp"
+        android:background="@drawable/roundbutton"
+        android:gravity="center"
+        android:text="Display"
+        android:textAllCaps="false"
+        android:textColor="@color/tabtextcolor" />
+
 </RelativeLayout>
