@@ -75,7 +75,11 @@ public class FragmentGallery extends Fragment {
 
     public void displayImage() throws IOException {
         Intent intent = new Intent(getActivity(), GridActivity.class);
-        intent.putExtra("image_path", currentImagePath);
+        if(currentImagePath == null){
+            currentImagePath = getActivity().getExternalFilesDir(Environment.getExternalStorageDirectory().toString()).getAbsolutePath();
+        } else {
+            intent.putExtra("image_path", currentImagePath);
+        }
         startActivity(intent);
     }
 
