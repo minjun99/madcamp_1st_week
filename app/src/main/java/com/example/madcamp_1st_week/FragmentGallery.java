@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,7 +27,7 @@ import java.util.Date;
 
 public class FragmentGallery extends Fragment {
     View view;
-
+    ImageView previewImage;
     String currentImagePath = null;
     private static final int IMAGE_REQUEST = 1;
     private Button btnCapture;
@@ -39,6 +40,7 @@ public class FragmentGallery extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.gallery_fragment, container, false);
+        previewImage = (ImageView) view.findViewById(R.id.preview_id);
         btnCapture = (Button) view.findViewById(R.id.capturebtn_id);
         btnDisplay = (Button) view.findViewById(R.id.displaybtn_id);
         btnCapture.setOnClickListener(new View.OnClickListener(){
@@ -56,11 +58,17 @@ public class FragmentGallery extends Fragment {
             public void onClick(View view) {
                 try {
                     displayImage();
+                    previewImage.setImageURI(Uri.parse(currentImagePath));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
+
+        if(currentImagePath == null)
+        {
+            previewImage.setImageResource(R.drawable.preview);
+        }
 
         return view;
     }
@@ -86,7 +94,6 @@ public class FragmentGallery extends Fragment {
                 startActivityForResult(cameraIntent, IMAGE_REQUEST);
             }
          }
-
     }
 
     private File getImageFile() throws IOException {

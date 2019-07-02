@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +22,8 @@
             android:layout_marginTop="25dp"
             android:text="Current Weather Data"
             android:textSize="36sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"/>
 
         <TextView
             android:id="@+id/txtcity_id"
@@ -94,5 +95,5 @@
             android:text=""
             android:textSize="15sp"
             android:textStyle="bold" />
-    </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>

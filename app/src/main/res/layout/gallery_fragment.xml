@@ -1,34 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/galleryview_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundcolor"
     android:gravity="center"
     android:orientation="vertical">
 
+
     <Button
         android:id="@+id/capturebtn_id"
         android:layout_width="75dp"
         android:layout_height="50dp"
+        android:layout_alignLeft="@+id/frame_id"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="450dp"
-        android:layout_marginRight="150dp"
         android:background="@drawable/roundbutton"
-        android:gravity="center"
         android:text="Camera"
         android:textAllCaps="false"
-        android:textColor="@color/tabtextcolor" />
+        android:textColor="@color/tabtextcolor"
+        android:layout_marginStart="75dp"/>
 
     <Button
         android:id="@+id/displaybtn_id"
         android:layout_width="75dp"
         android:layout_height="50dp"
+        android:layout_alignRight="@+id/frame_id"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="150dp"
         android:background="@drawable/roundbutton"
-        android:gravity="center"
         android:text="Display"
         android:textAllCaps="false"
-        android:textColor="@color/tabtextcolor" />
+        android:textColor="@color/tabtextcolor"
+        android:layout_marginEnd="75dp"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frame_id"
+        android:layout_above="@+id/capturebtn_id"
+        android:background="@drawable/roundcorner_coloraccent">
+
+        <ImageView
+            android:id="@+id/preview_id"
+            android:layout_width="450dp"
+            android:layout_height="450dp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 </RelativeLayout>
